@@ -2,9 +2,6 @@ import com.wjs.dao.GoodsDao;
 import com.wjs.dao.TestDao;
 import com.wjs.dao.TypeDao;
 import com.wjs.pojo.Goods;
-import com.wjs.pojo.Test;
-import com.wjs.pojo.Type;
-import com.wjs.service.TypeService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
