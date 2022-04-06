@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wjs.dao.GoodsDao">
+
+    <!--goodsId;
+        goodsName;
+        goodsPrice;
+        goodsPhoto;
+        typeId;-->
+
+    <resultMap id="Base_All" type="com.wjs.pojo.Goods" autoMapping="true">
+        <id property="goodsId" column="goods_id"></id>
+        <result property="goodsName" column="goods_name"></result>
+        <result property="goodsPrice" column="goods_price"></result>
+        <result property="goodsPhoto" column="goods_photo"></result>
+        <result property="typeId" column="type_id"></result>
+    </resultMap>
+
+
+    <insert id="add" parameterType="com.wjs.pojo.Goods">
+        insert into goods(goods_name, goods_price, goods_photo, type_id)
+        values (#{goodsName}, #{goodsPrice}, #{goodsPhoto}, #{typeId});
+    </insert>
+    <select id="selectById" parameterType="java.lang.Integer" resultType="com.wjs.pojo.Goods">
+        select *
+        from goods
+        where goods_id = #{id};
+    </select>
+    <select id="selectByIds" parameterType="java.lang.Integer" resultType="com.wjs.pojo.Goods">
+        select *
+        from goods
+        where goods_id = #{id};
+    </select>
+    <select id="selectAll" resultMap="Base_All">
+        select g.goods_name,g.goods_price,g.goods_photo,
+               (select type_name from type where type_id=g.type_id) type_Id
+        from goods g;
+    </select>
+</mapper>
